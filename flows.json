@@ -1,0 +1,176 @@
+[
+    {
+        "id": "de2c96d6c8a6db9b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "af8c99676bf5e9c3",
+        "type": "mqtt-broker",
+        "name": "HiveMQ",
+        "broker": "b127666df1f5484f8d4b824052b92e6f.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5b3024e6dcb56fd6",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "7f9839bc438f1976",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "c84133a152202bac",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "5b3024e6dcb56fd6",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "7f9839bc438f1976",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "85d40bdcab568229",
+        "type": "ui-group",
+        "name": "Group 1",
+        "page": "c84133a152202bac",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": false,
+        "groupType": "default"
+    },
+    {
+        "id": "6e377de09f963d12",
+        "type": "mqtt in",
+        "z": "de2c96d6c8a6db9b",
+        "name": "MQTT IN",
+        "topic": "project/counter",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "af8c99676bf5e9c3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "fbbaca66b2be8ac7"
+            ]
+        ]
+    },
+    {
+        "id": "fbbaca66b2be8ac7",
+        "type": "ui-text",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Counter Text",
+        "label": "Counter: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 530,
+        "y": 320,
+        "wires": []
+    }
+]
