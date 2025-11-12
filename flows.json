@@ -157,7 +157,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "name": "Counter Text",
+        "name": "Counter value",
         "label": "Counter: ",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
@@ -169,8 +169,8 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 530,
-        "y": 320,
+        "x": 560,
+        "y": 180,
         "wires": []
     }
 ]
