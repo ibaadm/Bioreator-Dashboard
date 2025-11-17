@@ -189,8 +189,138 @@
         "y": 180,
         "wires": [
             [
-                "fbbaca66b2be8ac7"
+                "fbbaca66b2be8ac7",
+                "7252e6ad891e2100"
             ]
         ]
+    },
+    {
+        "id": "7252e6ad891e2100",
+        "type": "ui-chart",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "name": "",
+        "label": "chart",
+        "order": 9007199254740991,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 670,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3140ed07fe948d0",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "function 2",
+        "func": "msg.payload = new Date().toISOString();\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 400,
+        "wires": [
+            [
+                "bb2b4b23098a4a83"
+            ]
+        ]
+    },
+    {
+        "id": "b9f006be7a3bd91a",
+        "type": "inject",
+        "z": "de2c96d6c8a6db9b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "iso",
+        "payloadType": "date",
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "e3140ed07fe948d0"
+            ]
+        ]
+    },
+    {
+        "id": "bb2b4b23098a4a83",
+        "type": "mqtt out",
+        "z": "de2c96d6c8a6db9b",
+        "name": "",
+        "topic": "MQTT OUT",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "af8c99676bf5e9c3",
+        "x": 670,
+        "y": 400,
+        "wires": []
     }
 ]
