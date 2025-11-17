@@ -145,7 +145,7 @@
         "y": 180,
         "wires": [
             [
-                "fbbaca66b2be8ac7"
+                "8586b06bf6a92e2f"
             ]
         ]
     },
@@ -169,8 +169,28 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 560,
+        "x": 680,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "8586b06bf6a92e2f",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.counter;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 180,
+        "wires": [
+            [
+                "fbbaca66b2be8ac7"
+            ]
+        ]
     }
 ]
