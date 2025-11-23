@@ -90,23 +90,23 @@
         "breakpoints": [
             {
                 "name": "Default",
-                "px": 0,
-                "cols": 3
+                "px": "0",
+                "cols": "3"
             },
             {
                 "name": "Tablet",
-                "px": 576,
-                "cols": 6
+                "px": "576",
+                "cols": "6"
             },
             {
                 "name": "Small Desktop",
-                "px": 768,
-                "cols": 9
+                "px": "768",
+                "cols": "9"
             },
             {
                 "name": "Desktop",
-                "px": 1024,
-                "cols": 12
+                "px": "1024",
+                "cols": "12"
             }
         ],
         "order": 1,
@@ -119,13 +119,13 @@
         "type": "ui-group",
         "name": "Group 1",
         "page": "c84133a152202bac",
-        "width": 6,
-        "height": 1,
+        "width": "12",
+        "height": "1",
         "order": 1,
         "showTitle": true,
         "className": "",
-        "visible": true,
-        "disabled": false,
+        "visible": "true",
+        "disabled": "false",
         "groupType": "default"
     },
     {
@@ -145,7 +145,8 @@
         "y": 180,
         "wires": [
             [
-                "8586b06bf6a92e2f"
+                "8586b06bf6a92e2f",
+                "7ee7182155938e07"
             ]
         ]
     },
@@ -154,7 +155,7 @@
         "type": "ui-text",
         "z": "de2c96d6c8a6db9b",
         "group": "85d40bdcab568229",
-        "order": 1,
+        "order": 3,
         "width": 0,
         "height": 0,
         "name": "Counter value",
@@ -169,8 +170,8 @@
         "className": "",
         "value": "payload",
         "valueType": "msg",
-        "x": 680,
-        "y": 180,
+        "x": 720,
+        "y": 120,
         "wires": []
     },
     {
@@ -185,8 +186,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 180,
+        "x": 480,
+        "y": 80,
         "wires": [
             [
                 "fbbaca66b2be8ac7",
@@ -199,9 +200,9 @@
         "type": "ui-chart",
         "z": "de2c96d6c8a6db9b",
         "group": "85d40bdcab568229",
-        "name": "",
-        "label": "chart",
-        "order": 9007199254740991,
+        "name": "Sample Chart",
+        "label": "Sample Counter Chart",
+        "order": 6,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -246,63 +247,14 @@
             "#e5e5e5"
         ],
         "gridColorDefault": true,
-        "width": 6,
-        "height": 8,
+        "width": "4",
+        "height": "4",
         "className": "",
         "interpolation": "linear",
-        "x": 670,
-        "y": 120,
+        "x": 720,
+        "y": 40,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "e3140ed07fe948d0",
-        "type": "function",
-        "z": "de2c96d6c8a6db9b",
-        "name": "function 2",
-        "func": "msg.payload = new Date().toISOString();\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 400,
-        "wires": [
-            [
-                "bb2b4b23098a4a83"
-            ]
-        ]
-    },
-    {
-        "id": "b9f006be7a3bd91a",
-        "type": "inject",
-        "z": "de2c96d6c8a6db9b",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "1",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "1",
-        "topic": "",
-        "payload": "iso",
-        "payloadType": "date",
-        "x": 270,
-        "y": 400,
-        "wires": [
-            [
-                "e3140ed07fe948d0"
-            ]
         ]
     },
     {
@@ -319,8 +271,437 @@
         "correl": "",
         "expiry": "",
         "broker": "af8c99676bf5e9c3",
-        "x": 670,
-        "y": 400,
+        "x": 650,
+        "y": 460,
         "wires": []
+    },
+    {
+        "id": "546f2e647326af1d",
+        "type": "ui-form",
+        "z": "de2c96d6c8a6db9b",
+        "name": "",
+        "group": "85d40bdcab568229",
+        "label": "Enter setpoints:",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "pH",
+                "key": "pH",
+                "type": "number",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Temperature",
+                "key": "Temp",
+                "type": "number",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Stirring speed",
+                "key": "Stirring",
+                "type": "number",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "pH": "",
+            "Temp": "",
+            "Stirring": ""
+        },
+        "payload": "",
+        "submit": "Confirm",
+        "cancel": "Clear",
+        "resetOnSubmit": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "passthru": false,
+        "dropdownOptions": [],
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "bb2b4b23098a4a83"
+            ]
+        ]
+    },
+    {
+        "id": "7ee7182155938e07",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "function 2",
+        "func": "//  {\n//  \"pH\": 5.3,\n//  \"temperature\": 28.4,\n//  \"stirring\": 1200\n//  }\n// Assume msg.payload = { pH: x, temperature: y, stirring: z }\n\nlet out = [];\n\nout.push({\n    payload: msg.payload.pH,\n    topic: \"pH\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.stirring,\n    topic: \"stirring\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 300,
+        "wires": [
+            [
+                "ad0310f99737cb92",
+                "bd9f4603fea24a37",
+                "67194730e48d6624",
+                "1ab199575111f49f",
+                "f502358a18211689",
+                "2da1bdb4b294d09f"
+            ]
+        ]
+    },
+    {
+        "id": "ad0310f99737cb92",
+        "type": "ui-gauge",
+        "z": "de2c96d6c8a6db9b",
+        "name": "pH",
+        "group": "85d40bdcab568229",
+        "order": 4,
+        "value": "payload.pH",
+        "valueType": "msg",
+        "width": "4",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "pH",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ff0000",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "3",
+                "color": "#64f547",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "7.1",
+                "color": "#0008ff",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": 0,
+        "max": "14",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 690,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd9f4603fea24a37",
+        "type": "ui-gauge",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Temp",
+        "group": "85d40bdcab568229",
+        "order": 2,
+        "value": "payload.temperature",
+        "valueType": "msg",
+        "width": "4",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "rounded",
+        "title": "Temperature",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#00aaff",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "25",
+                "color": "#00ff33",
+                "text": "",
+                "textType": "value"
+            },
+            {
+                "from": "35",
+                "color": "#ff4000",
+                "text": "",
+                "textType": "value"
+            }
+        ],
+        "min": 0,
+        "max": "50",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 690,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "67194730e48d6624",
+        "type": "ui-gauge",
+        "z": "de2c96d6c8a6db9b",
+        "name": "RPM",
+        "group": "85d40bdcab568229",
+        "order": 1,
+        "value": "payload.stirring",
+        "valueType": "msg",
+        "width": "4",
+        "height": "4",
+        "gtype": "gauge-34",
+        "gstyle": "needle",
+        "title": "Stirring Speed",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#007bff",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "500",
+                "color": "#bbff00",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1500",
+                "color": "#ff6600",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "2000",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 690,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ab199575111f49f",
+        "type": "ui-chart",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "name": "pH Chart",
+        "label": "pH vs Time",
+        "order": 7,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time (s)",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "pH",
+        "yAxisProperty": "payload.pH",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "4",
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 700,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f502358a18211689",
+        "type": "ui-chart",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "name": "RPM Chart",
+        "label": "RPM vs Time",
+        "order": 8,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time (s)",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "RPM",
+        "yAxisProperty": "payload.stirring",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "4",
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 710,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2da1bdb4b294d09f",
+        "type": "ui-chart",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "name": "Temp Chart",
+        "label": "Temperature vs Time",
+        "order": 9,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time (s)",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "Temperature (°C)",
+        "yAxisProperty": "payload.temperature",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "4",
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 710,
+        "y": 380,
+        "wires": [
+            []
+        ]
     }
 ]
