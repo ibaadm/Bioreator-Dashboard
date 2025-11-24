@@ -141,120 +141,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 260,
-        "y": 180,
+        "x": 280,
+        "y": 300,
         "wires": [
             [
-                "8586b06bf6a92e2f",
                 "7ee7182155938e07"
             ]
-        ]
-    },
-    {
-        "id": "fbbaca66b2be8ac7",
-        "type": "ui-text",
-        "z": "de2c96d6c8a6db9b",
-        "group": "85d40bdcab568229",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "Counter value",
-        "label": "Counter: ",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#717171",
-        "wrapText": false,
-        "className": "",
-        "value": "payload",
-        "valueType": "msg",
-        "x": 720,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "8586b06bf6a92e2f",
-        "type": "function",
-        "z": "de2c96d6c8a6db9b",
-        "name": "function 1",
-        "func": "msg.payload = msg.payload.counter;\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 80,
-        "wires": [
-            [
-                "fbbaca66b2be8ac7",
-                "7252e6ad891e2100"
-            ]
-        ]
-    },
-    {
-        "id": "7252e6ad891e2100",
-        "type": "ui-chart",
-        "z": "de2c96d6c8a6db9b",
-        "group": "85d40bdcab568229",
-        "name": "Sample Chart",
-        "label": "Sample Counter Chart",
-        "order": 6,
-        "chartType": "line",
-        "category": "topic",
-        "categoryType": "msg",
-        "xAxisLabel": "",
-        "xAxisProperty": "",
-        "xAxisPropertyType": "timestamp",
-        "xAxisType": "time",
-        "xAxisFormat": "",
-        "xAxisFormatType": "auto",
-        "xmin": "",
-        "xmax": "",
-        "yAxisLabel": "",
-        "yAxisProperty": "payload",
-        "yAxisPropertyType": "msg",
-        "ymin": "",
-        "ymax": "",
-        "bins": 10,
-        "action": "append",
-        "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": 4,
-        "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
-        "colors": [
-            "#0095ff",
-            "#ff0000",
-            "#ff7f0e",
-            "#2ca02c",
-            "#a347e1",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "textColor": [
-            "#666666"
-        ],
-        "textColorDefault": true,
-        "gridColor": [
-            "#e5e5e5"
-        ],
-        "gridColorDefault": true,
-        "width": "4",
-        "height": "4",
-        "className": "",
-        "interpolation": "linear",
-        "x": 720,
-        "y": 40,
-        "wires": [
-            []
         ]
     },
     {
@@ -271,7 +163,7 @@
         "correl": "",
         "expiry": "",
         "broker": "af8c99676bf5e9c3",
-        "x": 650,
+        "x": 710,
         "y": 460,
         "wires": []
     },
@@ -323,7 +215,7 @@
         "className": "",
         "passthru": false,
         "dropdownOptions": [],
-        "x": 380,
+        "x": 300,
         "y": 460,
         "wires": [
             [
@@ -405,7 +297,7 @@
         "styleGlow": false,
         "className": "",
         "x": 690,
-        "y": 180,
+        "y": 200,
         "wires": [
             []
         ]
@@ -459,7 +351,7 @@
         "styleGlow": false,
         "className": "",
         "x": 690,
-        "y": 340,
+        "y": 360,
         "wires": [
             []
         ]
@@ -513,7 +405,7 @@
         "styleGlow": false,
         "className": "",
         "x": 690,
-        "y": 260,
+        "y": 280,
         "wires": [
             []
         ]
@@ -575,7 +467,7 @@
         "className": "",
         "interpolation": "linear",
         "x": 700,
-        "y": 220,
+        "y": 240,
         "wires": [
             []
         ]
@@ -637,7 +529,7 @@
         "className": "",
         "interpolation": "linear",
         "x": 710,
-        "y": 300,
+        "y": 320,
         "wires": [
             []
         ]
@@ -699,7 +591,7 @@
         "className": "",
         "interpolation": "linear",
         "x": 710,
-        "y": 380,
+        "y": 400,
         "wires": [
             []
         ]
