@@ -133,8 +133,8 @@
         "type": "mqtt in",
         "z": "de2c96d6c8a6db9b",
         "name": "MQTT IN",
-        "topic": "project/counter",
-        "qos": "1",
+        "topic": "project/telemetry",
+        "qos": "0",
         "datatype": "auto-detect",
         "broker": "af8c99676bf5e9c3",
         "nl": false,
@@ -153,10 +153,10 @@
         "id": "bb2b4b23098a4a83",
         "type": "mqtt out",
         "z": "de2c96d6c8a6db9b",
-        "name": "",
-        "topic": "MQTT OUT",
-        "qos": "",
-        "retain": "",
+        "name": "MQTT OUT",
+        "topic": "project/setpoints",
+        "qos": "1",
+        "retain": "false",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -171,7 +171,7 @@
         "id": "546f2e647326af1d",
         "type": "ui-form",
         "z": "de2c96d6c8a6db9b",
-        "name": "",
+        "name": "Input setpoints",
         "group": "85d40bdcab568229",
         "label": "Enter setpoints:",
         "order": 5,
@@ -180,35 +180,35 @@
         "options": [
             {
                 "label": "pH",
-                "key": "pH",
+                "key": "ph",
                 "type": "number",
                 "required": false,
                 "rows": null
             },
             {
                 "label": "Temperature",
-                "key": "Temp",
+                "key": "temperature",
                 "type": "number",
                 "required": false,
                 "rows": null
             },
             {
                 "label": "Stirring speed",
-                "key": "Stirring",
+                "key": "rpm",
                 "type": "number",
                 "required": false,
                 "rows": null
             }
         ],
         "formValue": {
-            "pH": "",
-            "Temp": "",
-            "Stirring": ""
+            "ph": "",
+            "temperature": "",
+            "rpm": ""
         },
         "payload": "",
         "submit": "Confirm",
         "cancel": "Clear",
-        "resetOnSubmit": true,
+        "resetOnSubmit": false,
         "topic": "topic",
         "topicType": "msg",
         "splitLayout": "",
@@ -228,14 +228,14 @@
         "type": "function",
         "z": "de2c96d6c8a6db9b",
         "name": "function 2",
-        "func": "//  {\n//  \"pH\": 5.3,\n//  \"temperature\": 28.4,\n//  \"stirring\": 1200\n//  }\n// Assume msg.payload = { pH: x, temperature: y, stirring: z }\n\nlet out = [];\n\nout.push({\n    payload: msg.payload.pH,\n    topic: \"pH\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.stirring,\n    topic: \"stirring\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
+        "func": "//  {\n//  \"ph\": 5.3,\n//  \"temperature\": 28.4,\n//  \"rpm\": 1200\n//  }\n// Assume msg.payload = { \"ph\": x, \"temperature\": y, \"rpm\": z }\n\nlet out = [];\n\nout.push({\n    payload: msg.payload.ph,\n    topic: \"ph\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.rpm,\n    topic: \"rpm\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 440,
+        "x": 480,
         "y": 300,
         "wires": [
             [
@@ -255,7 +255,7 @@
         "name": "pH",
         "group": "85d40bdcab568229",
         "order": 4,
-        "value": "payload.pH",
+        "value": "payload.ph",
         "valueType": "msg",
         "width": "4",
         "height": "4",
@@ -351,7 +351,7 @@
         "styleGlow": false,
         "className": "",
         "x": 690,
-        "y": 360,
+        "y": 280,
         "wires": [
             []
         ]
@@ -363,7 +363,7 @@
         "name": "RPM",
         "group": "85d40bdcab568229",
         "order": 1,
-        "value": "payload.stirring",
+        "value": "payload.rpm",
         "valueType": "msg",
         "width": "4",
         "height": "4",
@@ -405,7 +405,7 @@
         "styleGlow": false,
         "className": "",
         "x": 690,
-        "y": 280,
+        "y": 360,
         "wires": [
             []
         ]
@@ -430,7 +430,7 @@
         "xmin": "",
         "xmax": "",
         "yAxisLabel": "pH",
-        "yAxisProperty": "payload.pH",
+        "yAxisProperty": "payload.ph",
         "yAxisPropertyType": "msg",
         "ymin": "",
         "ymax": "",
@@ -492,7 +492,7 @@
         "xmin": "",
         "xmax": "",
         "yAxisLabel": "RPM",
-        "yAxisProperty": "payload.stirring",
+        "yAxisProperty": "payload.rpm",
         "yAxisPropertyType": "msg",
         "ymin": "",
         "ymax": "",
@@ -529,7 +529,7 @@
         "className": "",
         "interpolation": "linear",
         "x": 710,
-        "y": 320,
+        "y": 400,
         "wires": [
             []
         ]
@@ -591,7 +591,7 @@
         "className": "",
         "interpolation": "linear",
         "x": 710,
-        "y": 400,
+        "y": 320,
         "wires": [
             []
         ]
