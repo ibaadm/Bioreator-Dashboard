@@ -229,7 +229,7 @@
         "z": "de2c96d6c8a6db9b",
         "name": "function 2",
         "func": "//  {\n//  \"ph\": 5.3,\n//  \"temperature\": 28.4,\n//  \"rpm\": 1200\n//  }\n// Assume msg.payload = { \"ph\": x, \"temperature\": y, \"rpm\": z }\n\nlet out = [];\n\nout.push({\n    payload: msg.payload.ph,\n    topic: \"ph\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.rpm,\n    topic: \"rpm\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
-        "outputs": 1,
+        "outputs": 3,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -240,12 +240,21 @@
         "wires": [
             [
                 "ad0310f99737cb92",
+                "1ab199575111f49f"
+            ],
+            [
                 "bd9f4603fea24a37",
-                "67194730e48d6624",
-                "1ab199575111f49f",
-                "f502358a18211689",
                 "2da1bdb4b294d09f"
+            ],
+            [
+                "67194730e48d6624",
+                "f502358a18211689"
             ]
+        ],
+        "outputLabels": [
+            "ph",
+            "temperature",
+            "rpm"
         ]
     },
     {
@@ -255,7 +264,7 @@
         "name": "pH",
         "group": "85d40bdcab568229",
         "order": 4,
-        "value": "payload.ph",
+        "value": "payload",
         "valueType": "msg",
         "width": "4",
         "height": "4",
@@ -264,7 +273,7 @@
         "title": "pH",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "",
         "icon": "",
         "prefix": "",
         "suffix": "",
@@ -309,7 +318,7 @@
         "name": "Temp",
         "group": "85d40bdcab568229",
         "order": 2,
-        "value": "payload.temperature",
+        "value": "payload",
         "valueType": "msg",
         "width": "4",
         "height": "4",
@@ -318,7 +327,7 @@
         "title": "Temperature",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "°C",
         "icon": "",
         "prefix": "",
         "suffix": "",
@@ -363,7 +372,7 @@
         "name": "RPM",
         "group": "85d40bdcab568229",
         "order": 1,
-        "value": "payload.rpm",
+        "value": "payload",
         "valueType": "msg",
         "width": "4",
         "height": "4",
@@ -372,7 +381,7 @@
         "title": "Stirring Speed",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "units",
+        "units": "rpm",
         "icon": "",
         "prefix": "",
         "suffix": "",
