@@ -129,6 +129,37 @@
         "groupType": "default"
     },
     {
+        "id": "dfb6a679f5425730",
+        "type": "mqtt-broker",
+        "name": "No Fault Stream",
+        "broker": "engf0001.cs.ucl.ac.uk ",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "6e377de09f963d12",
         "type": "mqtt in",
         "z": "de2c96d6c8a6db9b",
@@ -164,7 +195,7 @@
         "expiry": "",
         "broker": "af8c99676bf5e9c3",
         "x": 710,
-        "y": 460,
+        "y": 480,
         "wires": []
     },
     {
@@ -216,7 +247,7 @@
         "passthru": false,
         "dropdownOptions": [],
         "x": 300,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "bb2b4b23098a4a83",
@@ -624,10 +655,51 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 530,
-        "y": 560,
+        "x": 500,
+        "y": 440,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "6bd5bf39e9fe015b",
+        "type": "mqtt in",
+        "z": "de2c96d6c8a6db9b",
+        "name": "No Fault Stream In",
+        "topic": "bioreactor_sim/nofaults/telemetry/summary",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "dfb6a679f5425730",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "70d60eef8e76a159"
+            ]
+        ]
+    },
+    {
+        "id": "70d60eef8e76a159",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Parse No Faults",
+        "func": "msg.payload = {\n    ph: msg.payload.pH.mean,\n    temperature: msg.payload.temperature_C.mean,\n    rpm: msg.payload.rpm.mean\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 540,
+        "wires": [
+            [
+                "bb2b4b23098a4a83"
+            ]
         ]
     }
 ]
