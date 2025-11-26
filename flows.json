@@ -174,9 +174,9 @@
         "name": "Input setpoints",
         "group": "85d40bdcab568229",
         "label": "Enter setpoints:",
-        "order": 5,
-        "width": 0,
-        "height": 0,
+        "order": 4,
+        "width": "9",
+        "height": "4",
         "options": [
             {
                 "label": "pH",
@@ -219,7 +219,8 @@
         "y": 460,
         "wires": [
             [
-                "bb2b4b23098a4a83"
+                "bb2b4b23098a4a83",
+                "7e363abba4148c25"
             ]
         ]
     },
@@ -263,7 +264,7 @@
         "z": "de2c96d6c8a6db9b",
         "name": "pH",
         "group": "85d40bdcab568229",
-        "order": 4,
+        "order": 3,
         "value": "payload",
         "valueType": "msg",
         "width": "4",
@@ -376,7 +377,7 @@
         "valueType": "msg",
         "width": "4",
         "height": "4",
-        "gtype": "gauge-34",
+        "gtype": "gauge-half",
         "gstyle": "needle",
         "title": "Stirring Speed",
         "alwaysShowTitle": false,
@@ -426,7 +427,7 @@
         "group": "85d40bdcab568229",
         "name": "pH Chart",
         "label": "pH vs Time",
-        "order": 7,
+        "order": 6,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -488,7 +489,7 @@
         "group": "85d40bdcab568229",
         "name": "RPM Chart",
         "label": "RPM vs Time",
-        "order": 8,
+        "order": 7,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -550,7 +551,7 @@
         "group": "85d40bdcab568229",
         "name": "Temp Chart",
         "label": "Temperature vs Time",
-        "order": 9,
+        "order": 8,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -601,6 +602,30 @@
         "interpolation": "linear",
         "x": 710,
         "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7e363abba4148c25",
+        "type": "ui-template",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 5,
+        "width": 3,
+        "height": "4",
+        "head": "",
+        "format": "<div style=\"padding:10px;\">\n   <h3>Current Setpoints:</h3>\n   <br><br>\n   <p><b>pH:</b> {{ (msg.payload && msg.payload.ph) ? msg.payload.ph : 5 }}</p>\n   <br>\n   <p><b>Temperature:</b> {{ (msg.payload && msg.payload.temperature) ? msg.payload.temperature : 30 }} °C</p>\n   <br>\n   <p><b>Stirring Speed:</b> {{ (msg.payload && msg.payload.rpm) ? msg.payload.rpm : 1000 }} rpm</p>\n</div>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 530,
+        "y": 560,
         "wires": [
             []
         ]
