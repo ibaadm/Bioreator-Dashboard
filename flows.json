@@ -131,7 +131,7 @@
     {
         "id": "dfb6a679f5425730",
         "type": "mqtt-broker",
-        "name": "No Fault Stream",
+        "name": "UCL Stream",
         "broker": "engf0001.cs.ucl.ac.uk ",
         "port": 1883,
         "clientid": "",
@@ -665,7 +665,7 @@
         "id": "6bd5bf39e9fe015b",
         "type": "mqtt in",
         "z": "de2c96d6c8a6db9b",
-        "name": "No Fault Stream In",
+        "name": "No Faults Stream In",
         "topic": "bioreactor_sim/nofaults/telemetry/summary",
         "qos": "2",
         "datatype": "auto-detect",
@@ -697,9 +697,44 @@
         "x": 520,
         "y": 540,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "658dfbdfc3fdee01",
+        "type": "mqtt in",
+        "z": "de2c96d6c8a6db9b",
+        "name": "1 Faults Stream In",
+        "topic": "bioreactor_sim/single_fault/telemetry/summary",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "dfb6a679f5425730",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 600,
+        "wires": [
             [
-                "bb2b4b23098a4a83"
+                "88d17197bfd76190"
             ]
         ]
+    },
+    {
+        "id": "88d17197bfd76190",
+        "type": "debug",
+        "z": "de2c96d6c8a6db9b",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 600,
+        "wires": []
     }
 ]
