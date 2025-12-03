@@ -318,13 +318,13 @@
             },
             {
                 "from": "3",
-                "color": "#64f547",
+                "color": "#00ff00",
                 "text": "",
                 "textType": "value"
             },
             {
                 "from": "7.1",
-                "color": "#0008ff",
+                "color": "#0000ff",
                 "text": "",
                 "textType": "value"
             }
@@ -355,7 +355,7 @@
         "width": "4",
         "height": "4",
         "gtype": "gauge-half",
-        "gstyle": "rounded",
+        "gstyle": "needle",
         "title": "Temperature",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
@@ -366,19 +366,19 @@
         "segments": [
             {
                 "from": "0",
-                "color": "#00aaff",
+                "color": "#0000ff",
                 "text": "",
                 "textType": "value"
             },
             {
                 "from": "25",
-                "color": "#00ff33",
+                "color": "#00ff00",
                 "text": "",
                 "textType": "value"
             },
             {
                 "from": "35",
-                "color": "#ff4000",
+                "color": "#ff0000",
                 "text": "",
                 "textType": "value"
             }
@@ -420,19 +420,19 @@
         "segments": [
             {
                 "from": "0",
-                "color": "#007bff",
+                "color": "#0000ff",
                 "text": "",
                 "textType": "label"
             },
             {
                 "from": "500",
-                "color": "#bbff00",
+                "color": "#00ff00",
                 "text": "",
                 "textType": "label"
             },
             {
                 "from": "1500",
-                "color": "#ff6600",
+                "color": "#ff0000",
                 "text": "",
                 "textType": "label"
             }
@@ -638,30 +638,6 @@
         ]
     },
     {
-        "id": "7e363abba4148c25",
-        "type": "ui-template",
-        "z": "de2c96d6c8a6db9b",
-        "group": "85d40bdcab568229",
-        "page": "",
-        "ui": "",
-        "name": "",
-        "order": 5,
-        "width": 3,
-        "height": "4",
-        "head": "",
-        "format": "<div style=\"padding:10px;\">\n   <h3>Current Setpoints:</h3>\n   <br><br>\n   <p><b>pH:</b> {{ (msg.payload && msg.payload.ph) ? msg.payload.ph : 5 }}</p>\n   <br>\n   <p><b>Temperature:</b> {{ (msg.payload && msg.payload.temperature) ? msg.payload.temperature : 30 }} °C</p>\n   <br>\n   <p><b>Stirring Speed:</b> {{ (msg.payload && msg.payload.rpm) ? msg.payload.rpm : 1000 }} rpm</p>\n</div>\n",
-        "storeOutMessages": true,
-        "passthru": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 500,
-        "y": 440,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "6bd5bf39e9fe015b",
         "type": "mqtt in",
         "z": "de2c96d6c8a6db9b",
@@ -736,5 +712,29 @@
         "x": 500,
         "y": 600,
         "wires": []
+    },
+    {
+        "id": "7e363abba4148c25",
+        "type": "ui-template",
+        "z": "de2c96d6c8a6db9b",
+        "group": "85d40bdcab568229",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 5,
+        "width": 3,
+        "height": "4",
+        "head": "",
+        "format": "<div style=\"padding:10px;\">\n   <h3>Current Setpoints:</h3>\n   <br><br>\n   <p><b>pH:</b> {{ (msg.payload && msg.payload.ph) ? msg.payload.ph : 5 }}</p>\n   <br>\n   <p><b>Temperature:</b> {{ (msg.payload && msg.payload.temperature) ? msg.payload.temperature : 30 }} °C</p>\n   <br>\n   <p><b>Stirring Speed:</b> {{ (msg.payload && msg.payload.rpm) ? msg.payload.rpm : 1000 }} rpm</p>\n</div>\n",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 500,
+        "y": 440,
+        "wires": [
+            []
+        ]
     }
 ]
