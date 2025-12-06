@@ -81,7 +81,7 @@
     {
         "id": "c84133a152202bac",
         "type": "ui-page",
-        "name": "Page 1",
+        "name": "Dashboard",
         "ui": "5b3024e6dcb56fd6",
         "path": "/page1",
         "icon": "home",
@@ -122,7 +122,7 @@
         "width": "12",
         "height": "1",
         "order": 1,
-        "showTitle": true,
+        "showTitle": false,
         "className": "",
         "visible": "true",
         "disabled": "false",
@@ -164,7 +164,7 @@
         "type": "mqtt in",
         "z": "de2c96d6c8a6db9b",
         "name": "MQTT IN",
-        "topic": "project/telemetry",
+        "topic": "bioreactor/telemetry",
         "qos": "0",
         "datatype": "auto-detect",
         "broker": "af8c99676bf5e9c3",
@@ -185,9 +185,9 @@
         "type": "mqtt out",
         "z": "de2c96d6c8a6db9b",
         "name": "MQTT OUT",
-        "topic": "project/setpoints",
+        "topic": "bioreactor/setpoints",
         "qos": "1",
-        "retain": "false",
+        "retain": "true",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -195,19 +195,19 @@
         "expiry": "",
         "broker": "af8c99676bf5e9c3",
         "x": 710,
-        "y": 480,
+        "y": 500,
         "wires": []
     },
     {
         "id": "546f2e647326af1d",
         "type": "ui-form",
         "z": "de2c96d6c8a6db9b",
-        "name": "Input setpoints",
+        "name": "Input Setpoints",
         "group": "85d40bdcab568229",
         "label": "Enter setpoints:",
         "order": 4,
         "width": "9",
-        "height": "4",
+        "height": "5",
         "options": [
             {
                 "label": "pH",
@@ -247,7 +247,7 @@
         "passthru": false,
         "dropdownOptions": [],
         "x": 300,
-        "y": 480,
+        "y": 500,
         "wires": [
             [
                 "bb2b4b23098a4a83",
@@ -293,7 +293,7 @@
         "id": "ad0310f99737cb92",
         "type": "ui-gauge",
         "z": "de2c96d6c8a6db9b",
-        "name": "pH",
+        "name": "pH Gauge",
         "group": "85d40bdcab568229",
         "order": 3,
         "value": "payload",
@@ -337,7 +337,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 690,
+        "x": 710,
         "y": 200,
         "wires": [
             []
@@ -347,7 +347,7 @@
         "id": "bd9f4603fea24a37",
         "type": "ui-gauge",
         "z": "de2c96d6c8a6db9b",
-        "name": "Temp",
+        "name": "Temp Gauge",
         "group": "85d40bdcab568229",
         "order": 2,
         "value": "payload",
@@ -391,7 +391,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 690,
+        "x": 710,
         "y": 280,
         "wires": [
             []
@@ -401,7 +401,7 @@
         "id": "67194730e48d6624",
         "type": "ui-gauge",
         "z": "de2c96d6c8a6db9b",
-        "name": "RPM",
+        "name": "RPM Gauge",
         "group": "85d40bdcab568229",
         "order": 1,
         "value": "payload",
@@ -445,7 +445,7 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 690,
+        "x": 710,
         "y": 360,
         "wires": [
             []
@@ -651,7 +651,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 310,
-        "y": 540,
+        "y": 560,
         "wires": [
             [
                 "70d60eef8e76a159"
@@ -671,7 +671,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 540,
+        "y": 560,
         "wires": [
             []
         ]
@@ -690,7 +690,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 310,
-        "y": 600,
+        "y": 620,
         "wires": [
             [
                 "88d17197bfd76190"
@@ -710,7 +710,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 500,
-        "y": 600,
+        "y": 620,
         "wires": []
     },
     {
@@ -720,7 +720,7 @@
         "group": "85d40bdcab568229",
         "page": "",
         "ui": "",
-        "name": "",
+        "name": "Display Setpoints",
         "order": 5,
         "width": 3,
         "height": "4",
@@ -731,8 +731,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 500,
-        "y": 440,
+        "x": 690,
+        "y": 460,
         "wires": [
             []
         ]
