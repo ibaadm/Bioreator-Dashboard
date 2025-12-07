@@ -258,7 +258,7 @@
         "id": "7ee7182155938e07",
         "type": "function",
         "z": "de2c96d6c8a6db9b",
-        "name": "function 2",
+        "name": "Parse Telemetry",
         "func": "//  {\n//  \"ph\": 5.3,\n//  \"temperature\": 28.4,\n//  \"rpm\": 1200\n//  }\n// Assume msg.payload = { \"ph\": x, \"temperature\": y, \"rpm\": z }\n\nlet out = [];\n\nout.push({\n    payload: msg.payload.ph,\n    topic: \"ph\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.rpm,\n    topic: \"rpm\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
         "outputs": 3,
         "timeout": 0,
@@ -740,7 +740,7 @@
         "id": "0c08dc1426702718",
         "type": "function",
         "z": "de2c96d6c8a6db9b",
-        "name": "function 1",
+        "name": "Validate Setpoints",
         "func": "const p = msg.payload;\nif (!p) return null;\n\n// Start from last known good values (stored in flow)\nlet last = flow.get(\"setpoints\") || {\n    ph: 5,\n    temperature: 30,\n    rpm: 1000\n};\n\n// Update only if provided AND valid\nif (p.ph !== \"\" && p.ph !== null && p.ph !== undefined) {\n    if (p.ph < 3 || p.ph > 7) return null;\n    last.ph = p.ph;\n}\n\nif (p.temperature !== \"\" && p.temperature !== null && p.temperature !== undefined) {\n    if (p.temperature < 25 || p.temperature > 35) return null;\n    last.temperature = p.temperature;\n}\n\nif (p.rpm !== \"\" && p.rpm !== null && p.rpm !== undefined) {\n    if (p.rpm < 500 || p.rpm > 1500) return null;\n    last.rpm = p.rpm;\n}\n\n// Save updated setpoints\nflow.set(\"setpoints\", last);\n\n// Replace payload with merged result\nmsg.payload = last;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
@@ -748,7 +748,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 490,
         "y": 500,
         "wires": [
             [
