@@ -81,9 +81,9 @@
     {
         "id": "c84133a152202bac",
         "type": "ui-page",
-        "name": "Dashboard",
+        "name": "Main",
         "ui": "5b3024e6dcb56fd6",
-        "path": "/page1",
+        "path": "/main",
         "icon": "home",
         "layout": "grid",
         "theme": "7f9839bc438f1976",
@@ -117,7 +117,7 @@
     {
         "id": "85d40bdcab568229",
         "type": "ui-group",
-        "name": "Group 1",
+        "name": "Main Group",
         "page": "c84133a152202bac",
         "width": "12",
         "height": "1",
@@ -160,6 +160,56 @@
         "sessionExpiry": ""
     },
     {
+        "id": "0d164eb33263609b",
+        "type": "ui-page",
+        "name": "Kill Switches",
+        "ui": "5b3024e6dcb56fd6",
+        "path": "/kill_switches",
+        "icon": "alert",
+        "layout": "grid",
+        "theme": "7f9839bc438f1976",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "c3f71e616313d252",
+        "type": "ui-group",
+        "name": "Kill Switch Group",
+        "page": "0d164eb33263609b",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
         "id": "6e377de09f963d12",
         "type": "mqtt in",
         "z": "de2c96d6c8a6db9b",
@@ -185,7 +235,7 @@
         "type": "mqtt out",
         "z": "de2c96d6c8a6db9b",
         "name": "MQTT OUT",
-        "topic": "bioreactor/setpoints",
+        "topic": "bioreactor/control/setpoints",
         "qos": "1",
         "retain": "true",
         "respTopic": "",
@@ -259,7 +309,7 @@
         "type": "function",
         "z": "de2c96d6c8a6db9b",
         "name": "Parse Telemetry",
-        "func": "//  {\n//  \"ph\": 5.3,\n//  \"temperature\": 28.4,\n//  \"rpm\": 1200\n//  }\n// Assume msg.payload = { \"ph\": x, \"temperature\": y, \"rpm\": z }\n\nlet out = [];\n\nout.push({\n    payload: msg.payload.ph,\n    topic: \"ph\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.rpm,\n    topic: \"rpm\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
+        "func": "let out = [];\n\nout.push({\n    payload: msg.payload.ph,\n    topic: \"ph\"\n});\n\nout.push({\n    payload: msg.payload.temperature,\n    topic: \"temperature\"\n});\n\nout.push({\n    payload: msg.payload.rpm,\n    topic: \"rpm\"\n});\n\nreturn [out[0], out[1], out[2]];\n",
         "outputs": 3,
         "timeout": 0,
         "noerr": 0,
@@ -294,7 +344,7 @@
         "z": "de2c96d6c8a6db9b",
         "name": "pH Gauge",
         "group": "85d40bdcab568229",
-        "order": 3,
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "4",
@@ -402,7 +452,7 @@
         "z": "de2c96d6c8a6db9b",
         "name": "RPM Gauge",
         "group": "85d40bdcab568229",
-        "order": 1,
+        "order": 3,
         "value": "payload",
         "valueType": "msg",
         "width": "4",
@@ -519,7 +569,7 @@
         "group": "85d40bdcab568229",
         "name": "RPM Chart",
         "label": "RPM vs Time",
-        "order": 7,
+        "order": 8,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -581,7 +631,7 @@
         "group": "85d40bdcab568229",
         "name": "Temp Chart",
         "label": "Temperature vs Time",
-        "order": 8,
+        "order": 7,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -637,82 +687,6 @@
         ]
     },
     {
-        "id": "6bd5bf39e9fe015b",
-        "type": "mqtt in",
-        "z": "de2c96d6c8a6db9b",
-        "name": "No Faults Stream In",
-        "topic": "bioreactor_sim/nofaults/telemetry/summary",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "dfb6a679f5425730",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 310,
-        "y": 560,
-        "wires": [
-            [
-                "70d60eef8e76a159"
-            ]
-        ]
-    },
-    {
-        "id": "70d60eef8e76a159",
-        "type": "function",
-        "z": "de2c96d6c8a6db9b",
-        "name": "Parse No Faults",
-        "func": "msg.payload = {\n    ph: msg.payload.pH.mean,\n    temperature: msg.payload.temperature_C.mean,\n    rpm: msg.payload.rpm.mean\n};\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 520,
-        "y": 560,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "658dfbdfc3fdee01",
-        "type": "mqtt in",
-        "z": "de2c96d6c8a6db9b",
-        "name": "1 Faults Stream In",
-        "topic": "bioreactor_sim/single_fault/telemetry/summary",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "dfb6a679f5425730",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 310,
-        "y": 620,
-        "wires": [
-            [
-                "88d17197bfd76190"
-            ]
-        ]
-    },
-    {
-        "id": "88d17197bfd76190",
-        "type": "debug",
-        "z": "de2c96d6c8a6db9b",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 500,
-        "y": 620,
-        "wires": []
-    },
-    {
         "id": "7e363abba4148c25",
         "type": "ui-template",
         "z": "de2c96d6c8a6db9b",
@@ -741,7 +715,7 @@
         "type": "function",
         "z": "de2c96d6c8a6db9b",
         "name": "Validate Setpoints",
-        "func": "const p = msg.payload;\nif (!p) return null;\n\n// Start from last known good values (stored in flow)\nlet last = flow.get(\"setpoints\") || {\n    ph: 5,\n    temperature: 30,\n    rpm: 1000\n};\n\n// Update only if provided AND valid\nif (p.ph !== \"\" && p.ph !== null && p.ph !== undefined) {\n    if (p.ph < 3 || p.ph > 7) return null;\n    last.ph = p.ph;\n}\n\nif (p.temperature !== \"\" && p.temperature !== null && p.temperature !== undefined) {\n    if (p.temperature < 25 || p.temperature > 35) return null;\n    last.temperature = p.temperature;\n}\n\nif (p.rpm !== \"\" && p.rpm !== null && p.rpm !== undefined) {\n    if (p.rpm < 500 || p.rpm > 1500) return null;\n    last.rpm = p.rpm;\n}\n\n// Save updated setpoints\nflow.set(\"setpoints\", last);\n\n// Replace payload with merged result\nmsg.payload = last;\nreturn msg;\n",
+        "func": "const p = msg.payload;\nif (!p) return null;\n\nlet last = flow.get(\"setpoints\") || {\n    ph: 5,\n    temperature: 30,\n    rpm: 1000\n};\n\nif (p.ph !== \"\" && p.ph !== null && p.ph !== undefined) {\n    if (p.ph < 3 || p.ph > 7) return null;\n    last.ph = p.ph;\n}\n\nif (p.temperature !== \"\" && p.temperature !== null && p.temperature !== undefined) {\n    if (p.temperature < 25 || p.temperature > 35) return null;\n    last.temperature = p.temperature;\n}\n\nif (p.rpm !== \"\" && p.rpm !== null && p.rpm !== undefined) {\n    if (p.rpm < 500 || p.rpm > 1500) return null;\n    last.rpm = p.rpm;\n}\n\nflow.set(\"setpoints\", last);\n\nmsg.payload = last;\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -754,6 +728,146 @@
             [
                 "7e363abba4148c25",
                 "bb2b4b23098a4a83"
+            ]
+        ]
+    },
+    {
+        "id": "b3722d3fce40280e",
+        "type": "mqtt out",
+        "z": "de2c96d6c8a6db9b",
+        "name": "MQTT OUT",
+        "topic": "bioreactor/control/kill",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "af8c99676bf5e9c3",
+        "x": 730,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "14c9bd6348f54721",
+        "type": "ui-switch",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Pumps Kill Switch",
+        "label": "Pumps Kill Switch",
+        "group": "c3f71e616313d252",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": false,
+        "topic": "pumps_killed",
+        "topicType": "str",
+        "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 310,
+        "y": 560,
+        "wires": [
+            [
+                "f15441a83f6decae"
+            ]
+        ]
+    },
+    {
+        "id": "e7c8ca2f2e9697c3",
+        "type": "ui-switch",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Heating Kill Switch",
+        "label": "Heating Kill Switch",
+        "group": "c3f71e616313d252",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": false,
+        "topic": "heating_killed",
+        "topicType": "str",
+        "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 310,
+        "y": 600,
+        "wires": [
+            [
+                "f15441a83f6decae"
+            ]
+        ]
+    },
+    {
+        "id": "a9e7d4e543311fee",
+        "type": "ui-switch",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Motor Kill Switch",
+        "label": "Motor Kill Switch",
+        "group": "c3f71e616313d252",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": false,
+        "topic": "motor_killed",
+        "topicType": "str",
+        "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 300,
+        "y": 640,
+        "wires": [
+            [
+                "f15441a83f6decae"
+            ]
+        ]
+    },
+    {
+        "id": "f15441a83f6decae",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Package Kill Switches",
+        "func": "let kill_state = flow.get('kill_switch_state') || {\n    pumps_killed: false,\n    heating_killed: false,\n    motor_killed: false\n};\n\nswitch (msg.topic) {\n    case \"pumps_killed\":\n        kill_state.pumps_killed = msg.payload; \n        break;\n    case \"heating_killed\":\n        kill_state.heating_killed = msg.payload;\n        break;\n    case \"motor_killed\":\n        kill_state.motor_killed = msg.payload;\n        break;\n    default:\n        node.warn(\"Unknown kill switch topic: \" + msg.topic);\n        return null; \n}\n\nflow.set('kill_switch_state', kill_state);\n\nmsg.payload = {\n    pumps_killed: kill_state.pumps_killed,\n    heating_killed: kill_state.heating_killed,\n    motor_killed: kill_state.motor_killed\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 600,
+        "wires": [
+            [
+                "b3722d3fce40280e"
             ]
         ]
     }
