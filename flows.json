@@ -250,8 +250,7 @@
         "y": 500,
         "wires": [
             [
-                "bb2b4b23098a4a83",
-                "7e363abba4148c25"
+                "0c08dc1426702718"
             ]
         ]
     },
@@ -735,6 +734,27 @@
         "y": 460,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "0c08dc1426702718",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "function 1",
+        "func": "const p = msg.payload;\nif (!p) return null;\n\n// Start from last known good values (stored in flow)\nlet last = flow.get(\"setpoints\") || {\n    ph: 5,\n    temperature: 30,\n    rpm: 1000\n};\n\n// Update only if provided AND valid\nif (p.ph !== \"\" && p.ph !== null && p.ph !== undefined) {\n    if (p.ph < 3 || p.ph > 7) return null;\n    last.ph = p.ph;\n}\n\nif (p.temperature !== \"\" && p.temperature !== null && p.temperature !== undefined) {\n    if (p.temperature < 25 || p.temperature > 35) return null;\n    last.temperature = p.temperature;\n}\n\nif (p.rpm !== \"\" && p.rpm !== null && p.rpm !== undefined) {\n    if (p.rpm < 500 || p.rpm > 1500) return null;\n    last.rpm = p.rpm;\n}\n\n// Save updated setpoints\nflow.set(\"setpoints\", last);\n\n// Replace payload with merged result\nmsg.payload = last;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 500,
+        "wires": [
+            [
+                "7e363abba4148c25",
+                "bb2b4b23098a4a83"
+            ]
         ]
     }
 ]
