@@ -81,10 +81,10 @@
     {
         "id": "c84133a152202bac",
         "type": "ui-page",
-        "name": "Main",
+        "name": "Monitor",
         "ui": "5b3024e6dcb56fd6",
-        "path": "/main",
-        "icon": "home",
+        "path": "/monitor",
+        "icon": "eye",
         "layout": "grid",
         "theme": "7f9839bc438f1976",
         "breakpoints": [
@@ -117,7 +117,7 @@
     {
         "id": "85d40bdcab568229",
         "type": "ui-group",
-        "name": "Main Group",
+        "name": "Gauges Group",
         "page": "c84133a152202bac",
         "width": "12",
         "height": "1",
@@ -131,10 +131,10 @@
     {
         "id": "0d164eb33263609b",
         "type": "ui-page",
-        "name": "Kill Switches",
+        "name": "Control",
         "ui": "5b3024e6dcb56fd6",
-        "path": "/kill_switches",
-        "icon": "alert",
+        "path": "/control",
+        "icon": "wrench",
         "layout": "grid",
         "theme": "7f9839bc438f1976",
         "breakpoints": [
@@ -167,11 +167,39 @@
     {
         "id": "c3f71e616313d252",
         "type": "ui-group",
-        "name": "Kill Switch Group",
+        "name": "Sliders Group",
         "page": "0d164eb33263609b",
-        "width": 6,
+        "width": "8",
         "height": 1,
         "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "945ca1d21304440e",
+        "type": "ui-group",
+        "name": "Charts Group",
+        "page": "c84133a152202bac",
+        "width": "12",
+        "height": 1,
+        "order": 2,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "bb6769b814c90327",
+        "type": "ui-group",
+        "name": "Kill Switches Group",
+        "page": "0d164eb33263609b",
+        "width": "4",
+        "height": 1,
+        "order": 2,
         "showTitle": false,
         "className": "",
         "visible": "true",
@@ -214,65 +242,9 @@
         "correl": "",
         "expiry": "",
         "broker": "af8c99676bf5e9c3",
-        "x": 820,
+        "x": 1200,
         "y": 540,
         "wires": []
-    },
-    {
-        "id": "546f2e647326af1d",
-        "type": "ui-form",
-        "z": "de2c96d6c8a6db9b",
-        "name": "Input Setpoints",
-        "group": "85d40bdcab568229",
-        "label": "Enter setpoints:",
-        "order": 4,
-        "width": "9",
-        "height": "5",
-        "options": [
-            {
-                "label": "pH",
-                "key": "ph",
-                "type": "number",
-                "required": false,
-                "rows": null
-            },
-            {
-                "label": "Temperature",
-                "key": "temperature",
-                "type": "number",
-                "required": false,
-                "rows": null
-            },
-            {
-                "label": "Stirring speed",
-                "key": "rpm",
-                "type": "number",
-                "required": false,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "ph": "",
-            "temperature": "",
-            "rpm": ""
-        },
-        "payload": "",
-        "submit": "Confirm",
-        "cancel": "Clear",
-        "resetOnSubmit": true,
-        "topic": "topic",
-        "topicType": "msg",
-        "splitLayout": "",
-        "className": "",
-        "passthru": false,
-        "dropdownOptions": [],
-        "x": 300,
-        "y": 540,
-        "wires": [
-            [
-                "0c08dc1426702718"
-            ]
-        ]
     },
     {
         "id": "7ee7182155938e07",
@@ -317,7 +289,7 @@
         "order": 1,
         "value": "payload",
         "valueType": "msg",
-        "width": "4",
+        "width": "3",
         "height": "4",
         "gtype": "gauge-half",
         "gstyle": "needle",
@@ -371,7 +343,7 @@
         "order": 2,
         "value": "payload",
         "valueType": "msg",
-        "width": "4",
+        "width": "3",
         "height": "4",
         "gtype": "gauge-half",
         "gstyle": "needle",
@@ -425,7 +397,7 @@
         "order": 3,
         "value": "payload",
         "valueType": "msg",
-        "width": "4",
+        "width": "3",
         "height": "4",
         "gtype": "gauge-half",
         "gstyle": "needle",
@@ -474,10 +446,10 @@
         "id": "1ab199575111f49f",
         "type": "ui-chart",
         "z": "de2c96d6c8a6db9b",
-        "group": "85d40bdcab568229",
+        "group": "945ca1d21304440e",
         "name": "pH Chart",
         "label": "pH vs Time",
-        "order": 6,
+        "order": 1,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -499,7 +471,7 @@
         "stackSeries": false,
         "pointShape": "circle",
         "pointRadius": 4,
-        "showLegend": true,
+        "showLegend": false,
         "removeOlder": 1,
         "removeOlderUnit": "3600",
         "removeOlderPoints": "",
@@ -523,7 +495,7 @@
         ],
         "gridColorDefault": true,
         "width": "4",
-        "height": "4",
+        "height": "9",
         "className": "",
         "interpolation": "linear",
         "x": 780,
@@ -536,10 +508,10 @@
         "id": "f502358a18211689",
         "type": "ui-chart",
         "z": "de2c96d6c8a6db9b",
-        "group": "85d40bdcab568229",
+        "group": "945ca1d21304440e",
         "name": "RPM Chart",
         "label": "RPM vs Time",
-        "order": 8,
+        "order": 3,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -561,7 +533,7 @@
         "stackSeries": false,
         "pointShape": "circle",
         "pointRadius": 4,
-        "showLegend": true,
+        "showLegend": false,
         "removeOlder": 1,
         "removeOlderUnit": "3600",
         "removeOlderPoints": "",
@@ -585,7 +557,7 @@
         ],
         "gridColorDefault": true,
         "width": "4",
-        "height": "4",
+        "height": "9",
         "className": "",
         "interpolation": "linear",
         "x": 790,
@@ -598,10 +570,10 @@
         "id": "2da1bdb4b294d09f",
         "type": "ui-chart",
         "z": "de2c96d6c8a6db9b",
-        "group": "85d40bdcab568229",
+        "group": "945ca1d21304440e",
         "name": "Temp Chart",
         "label": "Temperature vs Time",
-        "order": 7,
+        "order": 2,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -623,7 +595,7 @@
         "stackSeries": false,
         "pointShape": "circle",
         "pointRadius": 4,
-        "showLegend": true,
+        "showLegend": false,
         "removeOlder": 1,
         "removeOlderUnit": "3600",
         "removeOlderPoints": "",
@@ -647,7 +619,7 @@
         ],
         "gridColorDefault": true,
         "width": "4",
-        "height": "4",
+        "height": "9",
         "className": "",
         "interpolation": "linear",
         "x": 790,
@@ -663,8 +635,8 @@
         "group": "85d40bdcab568229",
         "page": "",
         "ui": "",
-        "name": "Display Setpoints",
-        "order": 5,
+        "name": "Display Setpoints (Monitor)",
+        "order": 4,
         "width": 3,
         "height": "4",
         "head": "",
@@ -674,30 +646,10 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 810,
-        "y": 480,
+        "x": 500,
+        "y": 600,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "0c08dc1426702718",
-        "type": "function",
-        "z": "de2c96d6c8a6db9b",
-        "name": "Validate Setpoints",
-        "func": "const p = msg.payload;\nif (!p) return null;\n\nlet last = flow.get(\"setpoints\") || {\n    ph: 5,\n    temperature: 30,\n    rpm: 1000\n};\n\nif (p.ph !== \"\" && p.ph !== null && p.ph !== undefined) {\n    if (p.ph < 3 || p.ph > 7) return null;\n    last.ph = p.ph;\n}\n\nif (p.temperature !== \"\" && p.temperature !== null && p.temperature !== undefined) {\n    if (p.temperature < 25 || p.temperature > 35) return null;\n    last.temperature = p.temperature;\n}\n\nif (p.rpm !== \"\" && p.rpm !== null && p.rpm !== undefined) {\n    if (p.rpm < 500 || p.rpm > 1500) return null;\n    last.rpm = p.rpm;\n}\n\nflow.set(\"setpoints\", last);\n\nmsg.payload = last;\nreturn msg;\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 550,
-        "y": 540,
-        "wires": [
-            [
-                "bb2b4b23098a4a83"
-            ]
         ]
     },
     {
@@ -714,8 +666,8 @@
         "correl": "",
         "expiry": "",
         "broker": "af8c99676bf5e9c3",
-        "x": 1080,
-        "y": 700,
+        "x": 1040,
+        "y": 740,
         "wires": []
     },
     {
@@ -724,10 +676,10 @@
         "z": "de2c96d6c8a6db9b",
         "name": "Pumps Kill Switch",
         "label": "Pumps Kill Switch",
-        "group": "c3f71e616313d252",
+        "group": "bb6769b814c90327",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": "5",
+        "height": "1",
         "passthru": true,
         "decouple": false,
         "topic": "pumps_killed",
@@ -745,7 +697,7 @@
         "officon": "",
         "offcolor": "",
         "x": 650,
-        "y": 640,
+        "y": 680,
         "wires": [
             [
                 "f15441a83f6decae"
@@ -758,10 +710,10 @@
         "z": "de2c96d6c8a6db9b",
         "name": "Heating Kill Switch",
         "label": "Heating Kill Switch",
-        "group": "c3f71e616313d252",
+        "group": "bb6769b814c90327",
         "order": 2,
-        "width": 0,
-        "height": 0,
+        "width": "5",
+        "height": "1",
         "passthru": true,
         "decouple": false,
         "topic": "heating_killed",
@@ -779,7 +731,7 @@
         "officon": "",
         "offcolor": "",
         "x": 650,
-        "y": 700,
+        "y": 740,
         "wires": [
             [
                 "f15441a83f6decae"
@@ -792,10 +744,10 @@
         "z": "de2c96d6c8a6db9b",
         "name": "Motor Kill Switch",
         "label": "Motor Kill Switch",
-        "group": "c3f71e616313d252",
+        "group": "bb6769b814c90327",
         "order": 3,
-        "width": 0,
-        "height": 0,
+        "width": "5",
+        "height": "1",
         "passthru": true,
         "decouple": false,
         "topic": "motor_killed",
@@ -813,7 +765,7 @@
         "officon": "",
         "offcolor": "",
         "x": 640,
-        "y": 760,
+        "y": 800,
         "wires": [
             [
                 "f15441a83f6decae"
@@ -824,7 +776,7 @@
         "id": "f15441a83f6decae",
         "type": "function",
         "z": "de2c96d6c8a6db9b",
-        "name": "Package Kill Switches",
+        "name": "Package Kill",
         "func": "let t = flow.get(\"ignore_switch_output_until\") || 0;\nif (Date.now() < t) {\n    return null;\n}\n\nlet kill_state = flow.get('kill_switch_state') || {\n    pumps_killed: false,\n    heating_killed: false,\n    motor_killed: false\n};\n\nswitch (msg.topic) {\n    case \"pumps_killed\":\n        kill_state.pumps_killed = msg.payload; \n        break;\n    case \"heating_killed\":\n        kill_state.heating_killed = msg.payload;\n        break;\n    case \"motor_killed\":\n        kill_state.motor_killed = msg.payload;\n        break;\n    default:\n        node.warn(\"Unknown kill switch topic: \" + msg.topic);\n        return null; \n}\n\nflow.set('kill_switch_state', kill_state);\n\nmsg.payload = {\n    pumps_killed: kill_state.pumps_killed,\n    heating_killed: kill_state.heating_killed,\n    motor_killed: kill_state.motor_killed\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
@@ -832,8 +784,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 700,
+        "x": 850,
+        "y": 740,
         "wires": [
             [
                 "b3722d3fce40280e"
@@ -911,10 +863,10 @@
         "rh": 0,
         "inputs": 0,
         "x": 290,
-        "y": 700,
+        "y": 740,
         "wires": [
             [
-                "3ab48b4592f5075f"
+                "90bdb69b45c12714"
             ]
         ]
     },
@@ -931,28 +883,154 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 550,
-        "y": 480,
+        "x": 310,
+        "y": 540,
         "wires": [
             [
-                "7e363abba4148c25"
+                "7e363abba4148c25",
+                "d10fa760c790aa9d"
             ]
         ]
     },
     {
-        "id": "3ab48b4592f5075f",
+        "id": "c553097f8a0d52a8",
+        "type": "ui-slider",
+        "z": "de2c96d6c8a6db9b",
+        "group": "c3f71e616313d252",
+        "name": "Temperature Slider",
+        "label": "Temperature",
+        "tooltip": "",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "end",
+        "topic": "temperature",
+        "topicType": "str",
+        "thumbLabel": "true",
+        "showTicks": "false",
+        "min": "25",
+        "max": "35",
+        "step": "0.1",
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 750,
+        "y": 540,
+        "wires": [
+            [
+                "583a0b241ffb714d"
+            ]
+        ]
+    },
+    {
+        "id": "7fe5bf310308192a",
+        "type": "ui-slider",
+        "z": "de2c96d6c8a6db9b",
+        "group": "c3f71e616313d252",
+        "name": "pH Slider",
+        "label": "pH",
+        "tooltip": "",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "end",
+        "topic": "ph",
+        "topicType": "str",
+        "thumbLabel": "true",
+        "showTicks": "false",
+        "min": "3",
+        "max": "7",
+        "step": "0.1",
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 720,
+        "y": 480,
+        "wires": [
+            [
+                "583a0b241ffb714d"
+            ]
+        ]
+    },
+    {
+        "id": "0159f519ac8ae7e9",
+        "type": "ui-slider",
+        "z": "de2c96d6c8a6db9b",
+        "group": "c3f71e616313d252",
+        "name": "RPM Slider",
+        "label": "RPM",
+        "tooltip": "",
+        "order": 3,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "end",
+        "topic": "rpm",
+        "topicType": "str",
+        "thumbLabel": "true",
+        "showTicks": "false",
+        "min": "500",
+        "max": "1500",
+        "step": "1",
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": true,
+        "x": 730,
+        "y": 600,
+        "wires": [
+            [
+                "583a0b241ffb714d"
+            ]
+        ]
+    },
+    {
+        "id": "583a0b241ffb714d",
         "type": "function",
         "z": "de2c96d6c8a6db9b",
-        "name": "Parse States",
-        "func": "let initialised = context.get(\"initialised\") || false;\nif (initialised) {\n    return null;\n}\ncontext.set(\"initialised\", true);\nflow.set(\"ignore_switch_output_until\", Date.now() + 500);\n\nlet pumps = msg.payload.pumps_killed;\nlet heat = msg.payload.heating_killed;\nlet motor = msg.payload.motor_killed;\n\nlet pumpsMsg = { payload: pumps };\n\nlet heatMsg = { payload: heat };\n\nlet motorMsg = { payload: motor };\n\nreturn [pumpsMsg, heatMsg, motorMsg];\n",
+        "name": "Package Setpoints",
+        "func": "let t = flow.get(\"ignore_sliders_output_until\") || 0;\nif (Date.now() < t) {\n    return null;\n}\n\nlet setpoint_state = flow.get('setpoint_slider_state') || {\n    ph: 5,\n    temperature: 30,\n    rpm: 600\n};\n\nswitch (msg.topic) {\n    case \"ph\":\n        setpoint_state.ph = msg.payload; \n        break;\n    case \"temperature\":\n        setpoint_state.temperature = msg.payload;\n        break;\n    case \"rpm\":\n        setpoint_state.rpm = msg.payload;\n        break;\n    default:\n        node.warn(\"Unknown setpoint slider topic: \" + msg.topic);\n        return null; \n}\n\nflow.set('setpoint_slider_state', setpoint_state);\n\nmsg.payload = {\n    ph: setpoint_state.ph,\n    temperature: setpoint_state.temperature,\n    rpm: setpoint_state.rpm\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 540,
+        "wires": [
+            [
+                "bb2b4b23098a4a83"
+            ]
+        ]
+    },
+    {
+        "id": "90bdb69b45c12714",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Parse Kill",
+        "func": "let kill_initialised = context.get(\"kill_initialised\") || false;\nif (kill_initialised) {\n    return null;\n}\ncontext.set(\"kill_initialised\", true);\nflow.set(\"ignore_switch_output_until\", Date.now() + 500);\n\nlet pumps = msg.payload.pumps_killed;\nlet heat = msg.payload.heating_killed;\nlet motor = msg.payload.motor_killed;\n\nlet pumpsMsg = { payload: pumps };\n\nlet heatMsg = { payload: heat };\n\nlet motorMsg = { payload: motor };\n\nreturn [pumpsMsg, heatMsg, motorMsg];\n",
         "outputs": 3,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 450,
-        "y": 700,
+        "x": 440,
+        "y": 740,
         "wires": [
             [
                 "14c9bd6348f54721"
@@ -962,6 +1040,32 @@
             ],
             [
                 "a9e7d4e543311fee"
+            ]
+        ]
+    },
+    {
+        "id": "d10fa760c790aa9d",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Parse Setpoints",
+        "func": "let setpoints_initialised = context.get(\"setpoints_initialised\") || false;\nif (setpoints_initialised) {\n    return null;\n}\ncontext.set(\"setpoints_initialised\", true);\nflow.set(\"ignore_slider_output_until\", Date.now() + 500);\n\nlet ph = msg.payload.ph;\nlet temperature = msg.payload.temperature;\nlet rpm = msg.payload.rpm;\n\nlet phMsg = { payload: ph };\n\nlet temperatureMsg = { payload: temperature };\n\nlet rpmMsg = { payload: rpm };\n\nreturn [phMsg, temperatureMsg, rpmMsg];\n",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 540,
+        "wires": [
+            [
+                "7fe5bf310308192a"
+            ],
+            [
+                "c553097f8a0d52a8"
+            ],
+            [
+                "0159f519ac8ae7e9"
             ]
         ]
     }
