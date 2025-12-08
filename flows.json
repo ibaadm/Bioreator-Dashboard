@@ -129,37 +129,6 @@
         "groupType": "default"
     },
     {
-        "id": "dfb6a679f5425730",
-        "type": "mqtt-broker",
-        "name": "UCL Stream",
-        "broker": "engf0001.cs.ucl.ac.uk ",
-        "port": 1883,
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": 4,
-        "keepalive": 60,
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
         "id": "0d164eb33263609b",
         "type": "ui-page",
         "name": "Kill Switches",
@@ -226,7 +195,8 @@
         "y": 300,
         "wires": [
             [
-                "7ee7182155938e07"
+                "7ee7182155938e07",
+                "9e34ce3724c544fe"
             ]
         ]
     },
@@ -869,6 +839,63 @@
             [
                 "b3722d3fce40280e"
             ]
+        ]
+    },
+    {
+        "id": "9e34ce3724c544fe",
+        "type": "function",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Format Data for CSV",
+        "func": "var now = new Date();\nvar dateAndTime = now.toISOString();\nvar dateString = dateAndTime.split('T')[0];\nvar timestamp = (dateAndTime.split('T')[1]).split('.')[0];\n\nvar filename = \"./bioreactor_log_\" + dateString + \".csv\";\n\nvar csvLine = timestamp + \",\" + \n              msg.payload.ph + \",\" + \n              msg.payload.temperature + \",\" + \n              msg.payload.rpm + \"\\n\";\n\nvar headerMsg = {\n    filename: filename,\n    payload: \"timestamp,ph,temperature,rpm\\n\"\n};\n\nvar dataMsg = {\n    filename: filename,\n    payload: csvLine\n};\n\nvar key = \"fileWritten_\" + dateString; // reset each day\nvar alreadyWritten = context.get(key);\n\nif (!alreadyWritten) {\n    context.set(key, true);\n    return [headerMsg, dataMsg];\n}\n\nreturn [null, dataMsg];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "f4a16b00b9c71abc"
+            ],
+            [
+                "2bce1d88462ce044"
+            ]
+        ]
+    },
+    {
+        "id": "f4a16b00b9c71abc",
+        "type": "file",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Add CSV Header",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 730,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2bce1d88462ce044",
+        "type": "file",
+        "z": "de2c96d6c8a6db9b",
+        "name": "Write to File",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 710,
+        "y": 140,
+        "wires": [
+            []
         ]
     }
 ]
